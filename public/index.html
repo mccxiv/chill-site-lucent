@@ -27,7 +27,15 @@
         </script>
 
         <script type="text/ng-template" id="partials/projects.html">
-            projects
+            <div class="post" ng-repeat="post in m.posts">
+                <aside>
+                    <h5>Technologies</h5>
+                    {{post.aside | markdown}}
+                </aside>
+
+                <h2>{{post.title}}</h2>
+                <p>{{post.summary}}</p>
+            </div>
         </script>
 
         <script type="text/ng-template" id="partials/contact.html">

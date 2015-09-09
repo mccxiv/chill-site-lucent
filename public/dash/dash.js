@@ -39,11 +39,9 @@ app.controller('main', function($scope, $resource) {
 
 	$scope.submit = function() {
 		var id = $scope.m.post.id;
-		if (!id || !idExists(id)) {
-			$resource('../api/posts/').save($scope.m.post, fetchList);
-			$scope.m.post = {};
-		}
+		if (!id || !idExists(id)) $resource('../api/posts/').save($scope.m.post, fetchList);
 		else $resource('../api/posts/', null, {put: {method: 'PUT'}}).put($scope.m.post, fetchList);
+		$scope.m.post = {};
 	};
 
 	$scope.submitVerb = function(id) {

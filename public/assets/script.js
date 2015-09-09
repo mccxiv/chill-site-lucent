@@ -30,3 +30,9 @@ app.controller('home', function($scope) {
 app.controller('projects', function() {
 
 });
+
+app.filter('markdown', function() {
+	return function(input) {
+		return marked(input || '');
+	};
+});

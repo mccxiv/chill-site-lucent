@@ -46,20 +46,25 @@
                         <label class="mdl-textfield__label">Title</label>
                     </div>
 
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.summary}">
+                        <input class="mdl-textfield__input" type="text" ng-model="m.post.summary">
+                        <label class="mdl-textfield__label">Summary</label>
+                    </div>
+
                     <div class="editors">
                         <div class="body mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.body}">
                             <textarea class="mdl-textfield__input" type="text" ng-model="m.post.body"></textarea>
-                            <label class="mdl-textfield__label">Content</label>
+                            <label class="mdl-textfield__label">Content - markdown</label>
                         </div>
                         <div class="aside mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.aside}">
                             <textarea class="mdl-textfield__input" type="text" ng-model="m.post.aside"></textarea>
-                            <label class="mdl-textfield__label">Aside</label>
+                            <label class="mdl-textfield__label">Aside - markdown</label>
                         </div>
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.spotlight}">
                         <textarea class="mdl-textfield__input" type="text" ng-model="m.post.spotlight"></textarea>
-                        <label class="mdl-textfield__label">Spotlight Content</label>
+                        <label class="mdl-textfield__label">Spotlight - markdown</label>
                     </div>
 
                     <input type="submit" value="{{submitVerb(m.post.id)}}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
