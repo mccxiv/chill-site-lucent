@@ -1,6 +1,9 @@
+console.log('loaded')
+
 var app = angular.module('lucent-dash', ['ngResource', 'ngSanitize']);
 
 app.controller('main', function($scope, $resource) {
+
 	$scope.m = {
 		posts: [],
 		post: {},
@@ -9,6 +12,12 @@ app.controller('main', function($scope, $resource) {
 
 	fetchList();
 	fetchStatus();
+
+	$scope.$watch('m.status', function() {
+		setTimeout(function() {
+			componentHandler.upgradeElements(document.querySelectorAll('*'));
+		}, 10);
+	});
 
 	$scope.delete = function(id) {
 		if (!confirm('Deleting the post with ID '+id+'.\nAre you sure?')) return;
