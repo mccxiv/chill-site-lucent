@@ -93,63 +93,103 @@
                 font-size: 10px;
                 color: gray;
             }
+
+            .preview {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .preview .body-preview,
+            .preview .aside-preview {
+                overflow-y: auto;
+            }
+
+            .preview .body-preview {
+                flex-grow: 1;
+            }
+
+            .preview .aside-preview {
+                height: 100px;
+            }
+
+            .cms-action-button {
+                width: 200px;
+                position: absolute;
+                left: calc(50% - 100px);
+                top: 100px;
+            }
         </style>
     </head>
 
-    <body ng-controller="main">
+    <body ng-controller="main" ng-cloak>
 
-        <div class="list card mdl-card mdl-shadow--2dp">
-            <h5 class="section-title">Posts</h5>
-            <div ng-repeat="post in m.posts">
+        <div ng-switch on="status()">
+            <div ng-switch-when="need-login">
+                <a href="../login" class="cms-action-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    Log In
+                </a>
+            </div>
+            <div ng-switch-when="need-setup">
+                <a href="../setup" class="cms-action-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    Create an Account
+                </a>
+            </div>
+            <div ng-switch-when="is-admin">
 
-                <div class="post-link" ng-click="m.post = copy(post)">
-                    <div class="smaller-text">{{post.id}}</div>
-                    {{post.title}}
+                <div class="list card mdl-card mdl-shadow--2dp">
+                    <h5 class="section-title">Posts</h5>
+                    <div ng-repeat="post in m.posts">
+
+                        <div class="post-link" ng-click="m.post = copy(post)">
+                            <div class="smaller-text">{{post.id}}</div>
+                            {{post.title}}
+                        </div>
+                    </div>
+                </div>
+
+                <form ng-submit="submit()" class="form card mdl-card mdl-shadow--2dp">
+                    <h5 class="section-title">Editor</h5>
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.id}">
+                        <input class="mdl-textfield__input" type="text" ng-model="m.post.id">
+                        <label class="mdl-textfield__label">URL slug</label>
+                    </div>
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.title}">
+                        <input class="mdl-textfield__input" type="text" ng-model="m.post.title">
+                        <label class="mdl-textfield__label">Title</label>
+                    </div>
+
+                    <div class="editors">
+                        <div class="body mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.body}">
+                            <textarea class="mdl-textfield__input" type="text" ng-model="m.post.body"></textarea>
+                            <label class="mdl-textfield__label">Content</label>
+                        </div>
+                        <div class="aside mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.aside}">
+                            <textarea class="mdl-textfield__input" type="text" ng-model="m.post.aside"></textarea>
+                            <label class="mdl-textfield__label">Aside</label>
+                        </div>
+                    </div>
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.spotlight}">
+                        <textarea class="mdl-textfield__input" type="text" ng-model="m.post.spotlight"></textarea>
+                        <label class="mdl-textfield__label">Spotlight Content</label>
+                    </div>
+
+                    <input type="submit" value="{{submitVerb(m.post.id)}}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+
+                    <a class="delete-button" ng-if="m.post.id" ng-click="delete(m.post.id)">Delete this post</a>
+                </form>
+
+                <div class="preview card mdl-card mdl-shadow--2dp">
+                    <h5 class="section-title">Aside Preview</h5>
+                    <div class="aside-preview" ng-bind-html="m.post.aside | markdown"></div>
+                    <h5 class="section-title">Content Preview</h5>
+                    <div class="body-preview" ng-bind-html="m.post.body | markdown"></div>
                 </div>
             </div>
+            <div ng-switch-default>Loading...</div>
         </div>
-
-        <form ng-submit="submit()" class="form card mdl-card mdl-shadow--2dp">
-            <h5 class="section-title">Editor</h5>
-
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.id}">
-                <input class="mdl-textfield__input" type="text" ng-model="m.post.id">
-                <label class="mdl-textfield__label">ID - Used in URLs</label>
-            </div>
-
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.title}">
-                <input class="mdl-textfield__input" type="text" ng-model="m.post.title">
-                <label class="mdl-textfield__label">Title</label>
-            </div>
-
-            <div class="editors">
-                <div class="body mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.body}">
-                    <textarea class="mdl-textfield__input" type="text" ng-model="m.post.body"></textarea>
-                    <label class="mdl-textfield__label">Content</label>
-                </div>
-                <div class="aside mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.aside}">
-                    <textarea class="mdl-textfield__input" type="text" ng-model="m.post.aside"></textarea>
-                    <label class="mdl-textfield__label">Aside</label>
-                </div>
-            </div>
-
-
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.spotlight}">
-                <textarea class="mdl-textfield__input" type="text" ng-model="m.post.spotlight"></textarea>
-                <label class="mdl-textfield__label">Spotlight Content</label>
-            </div>
-
-            <input type="submit" value="{{submitVerb(m.post.id)}}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-
-            <a class="delete-button" ng-if="m.post.id" ng-click="delete(m.post.id)">Delete this post</a>
-        </form>
-
-        <div class="preview card mdl-card mdl-shadow--2dp">
-            <h5 class="section-title">Markdown Preview</h5>
-            <div ng-bind-html="m.post.body | markdown"></div>
-        </div>
-
-        <div></div>
 
         <script src="../bower_components/angular/angular.min.js"></script>
         <script src="../bower_components/angular-resource/angular-resource.min.js"></script>
@@ -162,10 +202,12 @@
             app.controller('main', function($scope, $resource) {
                 $scope.m = {
                     posts: [],
-                    post: {}
+                    post: {},
+                    status: {}
                 };
 
                 fetchList();
+                fetchStatus();
 
                 $scope.delete = function(id) {
                     if (!confirm('Deleting the post with ID '+id+'.\nAre you sure?')) return;
@@ -176,6 +218,14 @@
                 };
 
                 $scope.copy = angular.copy;
+
+                $scope.status = function() {
+                    var status = $scope.m.status;
+                    if (status.installed === undefined) return '';
+                    if (!status.installed) return 'need-install';
+                    if (status.admin) return 'is-admin';
+                    if (!status.admin) return 'need-login';
+                };
 
                 $scope.submit = function() {
                     var id = $scope.m.post.id;
@@ -189,6 +239,10 @@
 
                 function fetchList() {
                     $scope.m.posts = $resource('../api/posts/', null, {get: {isArray: true}}).get();
+                }
+
+                function fetchStatus() {
+                    $scope.m.status = $resource('../chill/status/').get();
                 }
 
                 function idExists(id) {
