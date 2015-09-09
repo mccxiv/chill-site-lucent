@@ -1,0 +1,112 @@
+* {
+    transition: all 200ms ease-out;
+}
+
+.card {
+    width: calc(40% - 20px);
+    height: calc(100vh - 30px);
+    float: left;
+    margin: 15px 10px;
+    padding: 25px;
+}
+
+.card:first-child {
+    width: calc(20% - 20px);
+}
+
+.list {
+    overflow-y: auto;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form .mdl-textfield {
+    width: 100%;
+}
+
+.editors {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.editors > * {
+    display: flex;
+    flex-direction: column;
+}
+
+.form .editors .body {
+    flex-grow: 1;
+}
+
+.form .editors .aside {
+//flex-grow: 1;
+}
+
+.form .editors textarea {
+    height: 100%;
+    flex-grow: 1;
+}
+
+.preview img, .preview video {
+    max-width: 100%;
+}
+
+.delete-button {
+    margin-top: 7px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    text-decoration: underline;
+}
+
+.section-title {
+    padding-left: 25px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    width: calc(100% + 50px);
+    margin: 0 0 10px -25px;
+}
+
+.post-link {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.post-link:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.post-link .smaller-text {
+    font-size: 10px;
+    color: gray;
+}
+
+.preview {
+    display: flex;
+    flex-direction: column;
+}
+
+.preview .body-preview,
+.preview .aside-preview {
+    overflow-y: auto;
+}
+
+.preview .body-preview {
+    flex-grow: 1;
+}
+
+.preview .aside-preview {
+    height: 100px;
+}
+
+.cms-action-button {
+    width: 200px;
+    position: absolute;
+    left: calc(50% - 100px);
+    top: 100px;
+}
