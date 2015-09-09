@@ -1,0 +1,210 @@
+<!doctype html>
+<html ng-app="lucent-dash">
+    <head>
+
+        <link rel="stylesheet" href="../bower_components/material-design-lite/material.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <style>
+            * {
+                transition: all 200ms ease-out;
+            }
+
+            .card {
+                width: calc(40% - 20px);
+                height: calc(100vh - 30px);
+                float: left;
+                margin: 15px 10px;
+                padding: 25px;
+            }
+
+            .card:first-child {
+                width: calc(20% - 20px);
+            }
+
+            .list {
+                overflow-y: auto;
+            }
+
+            .form {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .form .mdl-textfield {
+                width: 100%;
+            }
+
+            .editors {
+                display: flex;
+                flex-grow: 1;
+                flex-direction: column;
+            }
+
+            .editors > * {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .form .editors .body {
+                flex-grow: 1;
+            }
+
+            .form .editors .aside {
+                //flex-grow: 1;
+            }
+
+            .form .editors textarea {
+                height: 100%;
+                flex-grow: 1;
+            }
+
+            .preview img, .preview video {
+                max-width: 100%;
+            }
+
+            .delete-button {
+                margin-top: 7px;
+                cursor: pointer;
+            }
+
+            .delete-button:hover {
+                text-decoration: underline;
+            }
+
+            .section-title {
+                padding-left: 25px;
+                padding-bottom: 5px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+                width: calc(100% + 50px);
+                margin: 0 0 10px -25px;
+            }
+
+            .post-link {
+                cursor: pointer;
+                margin-bottom: 10px;
+            }
+
+            .post-link:hover {
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+
+            .post-link .smaller-text {
+                font-size: 10px;
+                color: gray;
+            }
+        </style>
+    </head>
+
+    <body ng-controller="main">
+
+        <div class="list card mdl-card mdl-shadow--2dp">
+            <h5 class="section-title">Posts</h5>
+            <div ng-repeat="post in m.posts">
+
+                <div class="post-link" ng-click="m.post = copy(post)">
+                    <div class="smaller-text">{{post.id}}</div>
+                    {{post.title}}
+                </div>
+            </div>
+        </div>
+
+        <form ng-submit="submit()" class="form card mdl-card mdl-shadow--2dp">
+            <h5 class="section-title">Editor</h5>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.id}">
+                <input class="mdl-textfield__input" type="text" ng-model="m.post.id">
+                <label class="mdl-textfield__label">ID - Used in URLs</label>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.title}">
+                <input class="mdl-textfield__input" type="text" ng-model="m.post.title">
+                <label class="mdl-textfield__label">Title</label>
+            </div>
+
+            <div class="editors">
+                <div class="body mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.body}">
+                    <textarea class="mdl-textfield__input" type="text" ng-model="m.post.body"></textarea>
+                    <label class="mdl-textfield__label">Content</label>
+                </div>
+                <div class="aside mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.aside}">
+                    <textarea class="mdl-textfield__input" type="text" ng-model="m.post.aside"></textarea>
+                    <label class="mdl-textfield__label">Aside</label>
+                </div>
+            </div>
+
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.spotlight}">
+                <textarea class="mdl-textfield__input" type="text" ng-model="m.post.spotlight"></textarea>
+                <label class="mdl-textfield__label">Spotlight Content</label>
+            </div>
+
+            <input type="submit" value="{{submitVerb(m.post.id)}}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+
+            <a class="delete-button" ng-if="m.post.id" ng-click="delete(m.post.id)">Delete this post</a>
+        </form>
+
+        <div class="preview card mdl-card mdl-shadow--2dp">
+            <h5 class="section-title">Markdown Preview</h5>
+            <div ng-bind-html="m.post.body | markdown"></div>
+        </div>
+
+        <div></div>
+
+        <script src="../bower_components/angular/angular.min.js"></script>
+        <script src="../bower_components/angular-resource/angular-resource.min.js"></script>
+        <script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="../bower_components/marked/lib/marked.js"></script>
+        <script src="../bower_components/material-design-lite/material.min.js"></script>
+        <script>
+            var app = angular.module('lucent-dash', ['ngResource', 'ngSanitize']);
+
+            app.controller('main', function($scope, $resource) {
+                $scope.m = {
+                    posts: [],
+                    post: {}
+                };
+
+                fetchList();
+
+                $scope.delete = function(id) {
+                    if (!confirm('Deleting the post with ID '+id+'.\nAre you sure?')) return;
+                    $resource('../api/posts/'+id, null, {delete: {method: 'DELETE'}}).delete(function() {
+                        fetchList();
+                        $scope.m.post = {};
+                    });
+                };
+
+                $scope.copy = angular.copy;
+
+                $scope.submit = function() {
+                    var id = $scope.m.post.id;
+                    if (!id || !idExists(id)) $resource('../api/posts/').save($scope.m.post, fetchList);
+                    else $resource('../api/posts/', null, {put: {method: 'PUT'}}).put($scope.m.post, fetchList);
+                };
+
+                $scope.submitVerb = function(id) {
+                    return (!id || !idExists(id))? 'create' : 'update';
+                };
+
+                function fetchList() {
+                    $scope.m.posts = $resource('../api/posts/', null, {get: {isArray: true}}).get();
+                }
+
+                function idExists(id) {
+                    var yep = false;
+                    $scope.m.posts.forEach(function(post) {
+                        if (post.id === id) yep = true;
+                    });
+                    return yep;
+                }
+            });
+
+            app.filter('markdown', function() {
+                return function(input) {
+                    return marked(input || '');
+                };
+            });
+        </script>
+    </body>
+</html>

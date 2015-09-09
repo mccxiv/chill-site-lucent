@@ -1,0 +1,11 @@
+{
+  "name": "mccxiv-portfolio",
+  "dependencies": {
+    "angular": "~1.4.5",
+    "angular-animate": "~1.4.5",
+    "angular-resource": "~1.4.5",
+    "angular-route": "~1.4.5",
+    "angular-sanitize": "~1.4.5",
+    "material-design-lite": "~1.0.4"
+  }
+}

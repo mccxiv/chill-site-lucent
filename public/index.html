@@ -1,0 +1,46 @@
+<!doctype html>
+<html ng-app="lucent">
+    <head>
+
+        <link rel="stylesheet" href="assets/style.css">
+    </head>
+
+    <body ng-controller="main" ng-class="{'is-home': m.isHome}">
+
+        <ng-view></ng-view>
+
+        <a href="#/" class="name">Andrea Stella</a>
+
+        <nav>
+            <a href="#/projects">projects</a> /
+            <a href="https://github.com/mccxiv" target="_blank">github</a> /
+            <a href="#/resume">resume</a> /
+            <a href="#/contact">contact</a>
+        </nav>
+
+        <script type="text/ng-template" id="partials/home.html">
+
+        </script>
+
+        <script type="text/ng-template" id="partials/about.html">
+            about
+        </script>
+
+        <script type="text/ng-template" id="partials/projects.html">
+            projects
+        </script>
+
+        <script type="text/ng-template" id="partials/contact.html">
+            contact
+        </script>
+
+        <script type="text/ng-template" id="partials/project.html">
+            project
+        </script>
+
+        <script src="bower_components/angular/angular.min.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
+        <script src="assets/script.js"></script>
+    </body>
+</html>
