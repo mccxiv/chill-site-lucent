@@ -62,11 +62,6 @@
                         </div>
                     </div>
 
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.spotlight}">
-                        <textarea class="mdl-textfield__input" type="text" ng-model="m.post.spotlight"></textarea>
-                        <label class="mdl-textfield__label">Spotlight - markdown</label>
-                    </div>
-
                     <input type="submit" value="{{submitVerb(m.post.id)}}" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
 
                     <a class="delete-button" ng-if="m.post.id" ng-click="delete(m.post.id)">Delete this post</a>

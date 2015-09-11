@@ -1,4 +1,4 @@
-var app = angular.module('lucent', ['ngAnimate', 'ngRoute']);
+var app = angular.module('lucent', ['ngAnimate', 'ngRoute', 'ngResource', 'ngSanitize']);
 
 app.config(function($routeProvider) {
 	var routes = ['/', '/about', '/projects', '/contact', '/projects/:project'];
@@ -20,15 +20,15 @@ app.controller('main', function($scope, $rootScope) {
 	$scope.m = {isHome: false};
 	$rootScope.$on('$routeChangeSuccess', function(e, curr) {
 		$scope.m.isHome = (curr.templateUrl === 'partials/home.html');
-	})
+	});
 });
 
 app.controller('home', function($scope) {
 
 });
 
-app.controller('projects', function() {
-
+app.controller('projects', function($scope, $resource) {
+	$scope.m.posts = $resource('../api/posts/', null, {get: {isArray: true}}).get();
 });
 
 app.filter('markdown', function() {

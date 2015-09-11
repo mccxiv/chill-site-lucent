@@ -43,7 +43,7 @@
 }
 
 .form .editors .aside {
-//flex-grow: 1;
+    height: 150px;
 }
 
 .form .editors textarea {
@@ -101,7 +101,7 @@
 }
 
 .preview .aside-preview {
-    height: 100px;
+    height: 200px;
 }
 
 .cms-action-button {

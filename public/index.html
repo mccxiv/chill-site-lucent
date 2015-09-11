@@ -1,8 +1,11 @@
 <!doctype html>
 <html ng-app="lucent">
     <head>
-
+        <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/fantasque-sans-mono" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="assets/style.css">
+
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
     </head>
 
     <body ng-controller="main" ng-class="{'is-home': m.isHome}">
@@ -12,9 +15,9 @@
         <a href="#/" class="name">Andrea Stella</a>
 
         <nav>
-            <a href="#/projects">projects</a> /
-            <a href="https://github.com/mccxiv" target="_blank">github</a> /
-            <a href="#/resume">resume</a> /
+            <a href="#/projects">projects</a>
+            <a href="https://github.com/mccxiv" target="_blank">github</a>
+            <a href="#/resume">resume</a>
             <a href="#/contact">contact</a>
         </nav>
 
@@ -27,14 +30,17 @@
         </script>
 
         <script type="text/ng-template" id="partials/projects.html">
-            <div class="post" ng-repeat="post in m.posts">
-                <aside>
-                    <h5>Technologies</h5>
-                    {{post.aside | markdown}}
-                </aside>
-
-                <h2>{{post.title}}</h2>
-                <p>{{post.summary}}</p>
+            <div class="posts">
+                <div class="post" ng-repeat="post in m.posts">
+                    <aside>
+                        <div ng-bind-html="post.aside | markdown"></div>
+                    </aside>
+                    <section>
+                        <h2>{{post.title}}</h2>
+                        <p class="summary">{{post.summary}}</p>
+                        <div class="body" ng-bind-html="post.body | markdown"></div>
+                    </section>
+                </div>
             </div>
         </script>
 
@@ -48,7 +54,10 @@
 
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
         <script src="bower_components/angular-route/angular-route.min.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+        <script src="bower_components/marked/lib/marked.js"></script>
         <script src="assets/script.js"></script>
     </body>
 </html>
