@@ -4,7 +4,7 @@
         <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/fantasque-sans-mono" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="assets/style.css">
 
-        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <!--<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>-->
 
     </head>
 
@@ -33,12 +33,12 @@
             <div class="posts">
                 <div class="post" ng-repeat="post in m.posts">
                     <aside>
-                        <div ng-bind-html="post.aside | markdown"></div>
+                        <div ng-bind-html="post.aside | markdownify"></div>
                     </aside>
                     <section>
                         <h2>{{post.title}}</h2>
                         <p class="summary">{{post.summary}}</p>
-                        <div class="body" ng-bind-html="post.body | markdown"></div>
+                        <div class="body" ng-bind-html="post.body | markdownify | trustAsHtml"></div>
                     </section>
                 </div>
             </div>
@@ -57,7 +57,7 @@
         <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
         <script src="bower_components/angular-route/angular-route.min.js"></script>
         <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-        <script src="bower_components/marked/lib/marked.js"></script>
+        <script src="bower_components/remarkable/dist/remarkable.min.js"></script>
         <script src="assets/script.js"></script>
     </body>
 </html>

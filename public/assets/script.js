@@ -16,6 +16,12 @@ app.config(function($routeProvider) {
 	}
 });
 
+app.factory('markdown', function() {
+	return new Remarkable({
+		html: true
+	});
+});
+
 app.controller('main', function($scope, $rootScope) {
 	$scope.m = {isHome: false};
 	$rootScope.$on('$routeChangeSuccess', function(e, curr) {
@@ -28,11 +34,29 @@ app.controller('home', function($scope) {
 });
 
 app.controller('projects', function($scope, $resource) {
-	$scope.m.posts = $resource('../api/posts/', null, {get: {isArray: true}}).get();
+	$scope.m.posts = {}; // TODO why is this necessary?
+	setTimeout(function() {
+		$scope.m.posts = $resource('../api/posts/', null, {get: {isArray: true}}).get(function() {
+			setTimeout(function() {
+				$('video').attr({
+					autoplay: '',
+					loop: '',
+					muted: ''
+				});
+			}, 0);
+		});
+	}, 500);
+
 });
 
-app.filter('markdown', function() {
+app.filter('markdownify', function(markdown) {
 	return function(input) {
-		return marked(input || '');
+		return markdown.render(input || '');
+	};
+});
+
+app.filter('trustAsHtml', function($sce) {
+	return function(html) {
+		return $sce.trustAsHtml(html);
 	};
 });

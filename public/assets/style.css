@@ -134,7 +134,7 @@ nav a {
 .post section img,
 .post section video {
     max-width: 100%;
-
     border-radius: 5px;
     box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0,0,0,0.1);
 }

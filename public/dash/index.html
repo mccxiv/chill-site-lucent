@@ -69,9 +69,9 @@
 
                 <div class="preview card mdl-card mdl-shadow--2dp">
                     <h5 class="section-title">Aside Preview</h5>
-                    <div class="aside-preview" ng-bind-html="m.post.aside | markdown"></div>
+                    <div class="aside-preview" ng-bind-html="m.post.aside | markdown | trust"></div>
                     <h5 class="section-title">Content Preview</h5>
-                    <div class="body-preview" ng-bind-html="m.post.body | markdown"></div>
+                    <div class="body-preview" ng-bind-html="m.post.body | markdown | trust"></div>
                 </div>
             </div>
             <div ng-switch-default>Loading...</div>
@@ -80,7 +80,7 @@
         <script src="../bower_components/angular/angular.min.js"></script>
         <script src="../bower_components/angular-resource/angular-resource.min.js"></script>
         <script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-        <script src="../bower_components/marked/lib/marked.js"></script>
+        <script src="../bower_components/remarkable/dist/remarkable.min.js"></script>
         <script src="../bower_components/material-design-lite/material.min.js"></script>
         <script src="dash.js"></script>
     </body>

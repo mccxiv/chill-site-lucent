@@ -65,8 +65,14 @@ app.controller('main', function($scope, $resource) {
 	}
 });
 
-app.filter('markdown', function() {
+app.filter('markdown', function(markdown) {
 	return function(input) {
-		return marked(input || '');
+		return markdown.render(input || '');
+	};
+});
+
+app.filter('trust', function($sce) {
+	return function(html) {
+		return $sce.trustAsHtml(html);
 	};
 });
