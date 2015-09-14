@@ -1,5 +1,3 @@
-console.log('loaded')
-
 var app = angular.module('lucent-dash', ['ngResource', 'ngSanitize']);
 
 app.controller('main', function($scope, $resource) {
@@ -65,7 +63,13 @@ app.controller('main', function($scope, $resource) {
 	}
 });
 
-app.filter('markdown', function(markdown) {
+app.factory('markdown', function() {
+	return new Remarkable({
+		html: true
+	});
+});
+
+app.filter('markdownify', function(markdown) {
 	return function(input) {
 		return markdown.render(input || '');
 	};

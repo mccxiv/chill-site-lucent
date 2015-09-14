@@ -1,0 +1,111 @@
+@-webkit-keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(-100px, 0, 0);
+        transform: translate3d(-100px, 0, 0);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(-100px, 0, 0);
+        transform: translate3d(-100px, 0, 0);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+/* LAYOUT ============================================ */
+ng-view.ng-leave {
+    animation: fadeOut 300ms;
+    //transition: outline 300ms;
+}
+ng-view.ng-enter {
+    transition: outline 300ms;
+    //animation: fadeIn 300ms 300ms backwards;
+}
+
+/* MENU ============================================== */
+.menu.ng-enter {
+    transition-duration: 1000ms;
+}
+
+.menu.ng-enter > * {
+    animation: fadeInLeft 250ms backwards ease-out;
+}
+
+.menu.ng-enter > *:nth-child(1) {
+    animation-delay: 800ms;
+}
+
+.menu.ng-enter > *:nth-child(2) {
+    animation-delay: 600ms;
+}
+
+.menu.ng-enter > *:nth-child(3) {
+    animation-delay: 500ms;
+}
+
+.menu.ng-enter > *:nth-child(4) {
+    animation-delay: 200ms;
+}
+
+.name.ng-enter {
+    animation: fadeInLeft 250ms backwards ease-out;
+}
+
+.menu.ng-leave,
+.name.ng-leave {
+    animation: fadeOutLeft 300ms ease-out;
+}
+
+/* HOME  ============================================= */
+ng-view.ng-leave .home .name {
+    animation: fadeOutRight 250ms ease-out forwards;
+}
+
+ng-view.ng-leave .home .menu {
+    animation: fadeOutLeft 300ms ease-out forwards;
+}
+
+/*ng-view.ng-enter .home .menu {
+    animation: fadeInRight 300ms ease-out;
+}*/
+
+/* PROJECTS ========================================== */
+.post {
+    transition: outline 2s;
+}
+
+.post.visible .post-aside {
+    animation: zoomInLeft 500ms 700ms backwards;
+}
+
+.post.visible .title {
+    animation: fadeInRight 200ms 100ms backwards;
+}
+
+.post.visible .summary {
+    animation: fadeInRight 200ms 200ms backwards;
+}
+
+.post.visible .body {
+    animation: fadeIn 650ms 200ms backwards;
+}
+
+.post.visible video,
+.post.visible img {
+    animation: fadeIn 350ms 400ms backwards;
+}
+
