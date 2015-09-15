@@ -48,6 +48,7 @@ h3 {
 }
 
 a {
+    transition: color 100ms ease-out;
     text-decoration: none;
     color: inherit;
 }
@@ -61,7 +62,7 @@ a:hover {
 }
 
 .name {
-    top: 45px;
+    bottom: 45px;
     left: 25px;
 }
 
@@ -77,23 +78,27 @@ a:hover {
 
 .home .menu,
 .home .name {
-    position: absolute;
-    top: calc(100vh / 2);
-    left: calc(100% / 2 + 10%);
+    position: initial;
 }
 
 .home .menu {
-    margin-top: 35px;
+    margin-top: 25px;
 }
 
-/* Posts */
-.posts {
+.front-n-center {
+    position: absolute;
+    top: 50vh;
+    left: calc(100% / 2 + 10%);
+}
+
+.content {
     margin-left: auto;
     margin-right: auto;
     width: 1200px;
-    padding-top: 50vh;
+    padding-top: 100px;
 }
 
+/* Posts */
 .post {
     display: flex;
     justify-content: flex-end;
@@ -140,6 +145,7 @@ a:hover {
 
 .post section img,
 .post section video {
+    margin: 15px 0;
     max-width: 100%;
     border-radius: 5px;
     box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);

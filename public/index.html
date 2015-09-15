@@ -11,13 +11,12 @@
 
     </head>
 
-    <body ng-controller="main">
+    <body ng-controller="main" ng-cloak>
 
         <ng-view ng-animate-children class="view-animation"></ng-view>
 
-        <a class="name" href="#/" ng-if="m.notHome">Andrea Stella</a>
-
         <nav class="menu" ng-if="m.notHome">
+            <a href="#/">Andrea</a>
             <a href="#/projects">projects</a>
             <a href="https://github.com/mccxiv" target="_blank">github</a>
             <a href="#/resume">resume</a>
@@ -25,8 +24,8 @@
         </nav>
 
         <script type="text/ng-template" id="partials/home.html">
-            <div class="home">
-                <a href="#/" class="name" ng-if="m.render">Andrea Stella</a>
+            <div class="home front-n-center">
+                <span class="name" ng-if="m.render">Andrea Stella</span>
                 <div class="menu" ng-if="m.render">
                     <a href="#/projects">projects</a>
                     <a href="https://github.com/mccxiv" target="_blank">github</a>
@@ -36,12 +35,12 @@
             </div>
         </script>
 
-        <script type="text/ng-template" id="partials/about.html">
-            about
+        <script type="text/ng-template" id="partials/resume.html">
+            <div class="resume front-n-center"></div>
         </script>
 
         <script type="text/ng-template" id="partials/projects.html">
-            <div class="posts" ng-if="m.posts.length">
+            <div class="content" ng-if="m.posts.length">
                 <div class="post" ng-class="{visible: post.visible}"
                      ng-repeat="post in m.posts"
                      in-view="visible($index)">
@@ -49,9 +48,26 @@
                         <div ng-bind-html="post.aside | markdownify"></div>
                     </aside>
                     <section class="post-content">
-                        <h2 class="title">{{post.title}}</h2>
-                        <p class="summary">{{post.summary}}</p>
+                        <a href="#/projects/{{post.id}}">
+                            <h2 class="title">{{post.title}}</h2>
+                            <p class="summary">{{post.summary}}</p>
+                        </a>
                         <div class="body" ng-bind-html="post.body | markdownify | trustAsHtml"></div>
+                    </section>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="partials/project.html">
+            <div class="content">
+                <div class="post" ng-class="{visible: m.post.id}">
+                    <aside class="post-aside">
+                        <div ng-bind-html="m.post.aside | markdownify"></div>
+                    </aside>
+                    <section class="post-content">
+                        <h2 class="title">{{m.post.title}}</h2>
+                        <p class="summary">{{m.post.summary}}</p>
+                        <div class="body" ng-bind-html="m.post.body | markdownify | trustAsHtml"></div>
                     </section>
                 </div>
             </div>
@@ -59,10 +75,6 @@
 
         <script type="text/ng-template" id="partials/contact.html">
             contact
-        </script>
-
-        <script type="text/ng-template" id="partials/project.html">
-            project
         </script>
 
         <script src="bower_components/angular/angular.min.js"></script>

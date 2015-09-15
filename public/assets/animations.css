@@ -29,11 +29,9 @@
 /* LAYOUT ============================================ */
 ng-view.ng-leave {
     animation: fadeOut 300ms;
-    //transition: outline 300ms;
 }
 ng-view.ng-enter {
     transition: outline 300ms;
-    //animation: fadeIn 300ms 300ms backwards;
 }
 
 /* MENU ============================================== */
@@ -79,10 +77,6 @@ ng-view.ng-leave .home .menu {
     animation: fadeOutLeft 300ms ease-out forwards;
 }
 
-/*ng-view.ng-enter .home .menu {
-    animation: fadeInRight 300ms ease-out;
-}*/
-
 /* PROJECTS ========================================== */
 .post {
     transition: outline 2s;
@@ -97,7 +91,7 @@ ng-view.ng-leave .home .menu {
 }
 
 .post.visible .summary {
-    animation: fadeInRight 200ms 200ms backwards;
+    animation: fadeInRight 200ms 300ms backwards;
 }
 
 .post.visible .body {
@@ -108,4 +102,3 @@ ng-view.ng-leave .home .menu {
 .post.visible img {
     animation: fadeIn 350ms 400ms backwards;
 }
-

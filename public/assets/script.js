@@ -22,17 +22,19 @@ app.factory('markdown', function() {
 	});
 });
 
-app.controller('main', function($scope, $rootScope) {
+app.controller('main', function($scope, $rootScope, $timeout) {
 	$scope.m = {notHome: false};
 	$rootScope.$on('$routeChangeSuccess', function(e, curr) {
-		$scope.m.notHome = curr.templateUrl !== 'partials/home.html';
+		// Make sure animation is triggered when landing on any page
+		$timeout(function() {
+			$scope.m.notHome = curr.templateUrl !== 'partials/home.html';
+		}, 0);
 	});
 });
 
 app.controller('home', function($scope, $timeout) {
 	$scope.m = {};
 	$timeout(function() {
-		// Change needs to happen on next tick
 		$scope.m.render = true;
 	}, 0);
 });
@@ -41,7 +43,7 @@ app.controller('projects', function($scope, $resource, $document) {
 	$scope.m = {};
 
 	setTimeout(function() {
-		$scope.m.posts = $resource('../api/posts/', null, {get: {isArray: true}}).get(function() {
+		$scope.m.posts = $resource('api/posts/', null, {get: {isArray: true}}).get(function() {
 			setTimeout(pauseVideos, 0);
 		});
 	}, 500);
@@ -67,6 +69,10 @@ app.controller('projects', function($scope, $resource, $document) {
 			videos[i].play();
 		}
 	}
+});
+
+app.controller('project', function($scope, $routeParams, $resource) {
+	$scope.m.post = $resource('api/posts/'+$routeParams.project).get();
 });
 
 app.filter('markdownify', function(markdown) {
