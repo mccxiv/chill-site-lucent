@@ -2,6 +2,7 @@
 <html ng-app="lucent">
     <head>
         <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/fantasque-sans-mono" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="bower_components/animate.css/animate.css">
         <link rel="stylesheet" href="assets/animations.css">
         <link rel="stylesheet" href="assets/style.css">
@@ -19,24 +20,18 @@
             <a href="#/">Andrea</a>
             <a href="#/projects">projects</a>
             <a href="https://github.com/mccxiv" target="_blank">github</a>
-            <a href="#/resume">resume</a>
             <a href="#/contact">contact</a>
         </nav>
 
         <script type="text/ng-template" id="partials/home.html">
-            <div class="home front-n-center">
+            <div class="home mid-right">
                 <span class="name" ng-if="m.render">Andrea Stella</span>
                 <div class="menu" ng-if="m.render">
                     <a href="#/projects">projects</a>
                     <a href="https://github.com/mccxiv" target="_blank">github</a>
-                    <a href="#/resume">resume</a>
                     <a href="#/contact">contact</a>
                 </div>
             </div>
-        </script>
-
-        <script type="text/ng-template" id="partials/resume.html">
-            <div class="resume front-n-center"></div>
         </script>
 
         <script type="text/ng-template" id="partials/projects.html">

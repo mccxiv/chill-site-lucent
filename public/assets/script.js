@@ -1,7 +1,7 @@
 var app = angular.module('lucent', ['ngAnimate', 'ngRoute', 'ngResource', 'ngSanitize', 'angular-inview']);
 
 app.config(function($routeProvider) {
-	var routes = ['/', '/about', '/projects', '/contact', '/projects/:project'];
+	var routes = ['/', '/about', '/projects', '/projects/:project', '/contact'];
 
 	routes.map(addRoute);
 

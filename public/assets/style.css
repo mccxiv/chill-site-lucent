@@ -85,17 +85,21 @@ a:hover {
     margin-top: 25px;
 }
 
-.front-n-center {
+.mid-right {
     position: absolute;
     top: 50vh;
     left: calc(100% / 2 + 10%);
+}
+
+.mid {
+    display: flex;
+    flex-direction: column;
 }
 
 .content {
     margin-left: auto;
     margin-right: auto;
     width: 1200px;
-    padding-top: 100px;
 }
 
 /* Posts */
@@ -103,7 +107,7 @@ a:hover {
     display: flex;
     justify-content: flex-end;
     flex-direction: row;
-    margin-bottom: 300px;
+    margin-top: 300px;
     position: relative;
     opacity: 0;
 }
@@ -115,7 +119,7 @@ a:hover {
 .post aside {
     position: absolute;
     text-align: right;
-    border-right: 5px solid rgba(0, 0, 0, 0.15);
+    border-right: 2px solid rgba(0, 0, 0, 0.15);
     right: calc(60% + 85px);
     padding-right: 25px;
     top: 105px;
