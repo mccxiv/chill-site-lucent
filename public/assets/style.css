@@ -57,13 +57,8 @@ a:hover {
     color: #0091ea;
 }
 
-.name, .menu {
+.menu {
     position: fixed;
-}
-
-.name {
-    bottom: 45px;
-    left: 25px;
 }
 
 .menu {
@@ -76,8 +71,7 @@ a:hover {
     margin-right: 10px;
 }
 
-.home .menu,
-.home .name {
+.home .menu {
     position: initial;
 }
 
@@ -85,13 +79,18 @@ a:hover {
     margin-top: 25px;
 }
 
+.home .name {
+    margin-right: 45px;
+}
+
 .mid-right {
     position: absolute;
     top: 50vh;
-    left: calc(100% / 2 + 10%);
+    left: 50%;
 }
 
 .mid {
+    /* TODO webkit prefix (maybe with gulp instead) */
     display: flex;
     flex-direction: column;
 }
