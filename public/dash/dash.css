@@ -110,3 +110,8 @@
     left: calc(50% - 100px);
     top: 100px;
 }
+
+.first-editor-row {
+    display: flex;
+    flex-direction: row;
+}

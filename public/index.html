@@ -39,8 +39,9 @@
         <script type="text/ng-template" id="partials/projects.html">
             <div class="content" ng-if="m.posts.length">
                 <div class="post" ng-class="{visible: post.visible}"
-                     ng-repeat="post in m.posts"
-                     in-view="visible($index)">
+                     ng-repeat="post in m.posts | orderBy: '-priority'"
+                     in-view="visible(post)"
+                     id="{{post.id}}">
                     <aside class="post-aside">
                         <div ng-bind-html="post.aside | markdownify"></div>
                     </aside>

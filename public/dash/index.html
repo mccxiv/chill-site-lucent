@@ -24,10 +24,10 @@
 
                 <div class="list card mdl-card mdl-shadow--2dp">
                     <h5 class="section-title">Posts</h5>
-                    <div ng-repeat="post in m.posts">
+                    <div ng-repeat="post in m.posts | orderBy: '-priority'">
 
                         <div class="post-link" ng-click="m.post = copy(post)">
-                            <div class="smaller-text">{{post.id}}</div>
+                            <div class="smaller-text">{{post.id}} | priority {{post.priority}}</div>
                             {{post.title}}
                         </div>
                     </div>
@@ -36,9 +36,15 @@
                 <form ng-submit="submit()" class="form card mdl-card mdl-shadow--2dp">
                     <h5 class="section-title">Editor</h5>
 
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.id}">
-                        <input class="mdl-textfield__input" type="text" ng-model="m.post.id">
-                        <label class="mdl-textfield__label">URL slug</label>
+                    <div class="first-editor-row">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.id}">
+                            <input class="mdl-textfield__input" type="text" ng-model="m.post.id">
+                            <label class="mdl-textfield__label">URL slug</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.priority}">
+                            <input class="mdl-textfield__input" type="number" ng-model="m.post.priority">
+                            <label class="mdl-textfield__label">Order Priority</label>
+                        </div>
                     </div>
 
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{'is-dirty': m.post.title}">

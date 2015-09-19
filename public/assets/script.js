@@ -48,10 +48,10 @@ app.controller('projects', function($scope, $resource, $document) {
 		});
 	}, 500);
 
-	$scope.visible = function(index) {
+	$scope.visible = function(post) {
 		console.log('visible');
-		$scope.m.posts[index].visible = true;
-		playVideo(index);
+		post.visible = true;
+		playVideo(post);
 	};
 
 	function pauseVideos() {
@@ -61,10 +61,10 @@ app.controller('projects', function($scope, $resource, $document) {
 		}
 	}
 
-	function playVideo(index) {
-		var posts = $document[0].querySelectorAll('.post');
-		var post = posts[index];
-		var videos = post.querySelectorAll('video');
+	function playVideo(post) {
+		var element = $document[0].getElementById(post.id);
+		console.log(element);
+		var videos = element.querySelectorAll('video');
 		for (var i = 0; i < videos.length; i++) {
 			videos[i].play();
 		}
