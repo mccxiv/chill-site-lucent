@@ -121,6 +121,10 @@ a:hover {
     opacity: 1;
 }
 
+.post .title {
+    display: block;
+}
+
 .post aside {
     position: absolute;
     text-align: right;

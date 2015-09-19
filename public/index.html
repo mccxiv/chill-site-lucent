@@ -46,10 +46,10 @@
                         <div ng-bind-html="post.aside | markdownify"></div>
                     </aside>
                     <section class="post-content">
-                        <a href="#/projects/{{post.id}}">
-                            <h2 class="title">{{post.title}}</h2>
-                            <p class="summary">{{post.summary}}</p>
-                        </a>
+                        <h2 class="title">
+                            <a href="#/projects/{{post.id}}">{{post.title}}</a>
+                        </h2>
+                        <p class="summary">{{post.summary}}</p>
                         <div class="body" ng-bind-html="post.body | markdownify | trustAsHtml"></div>
                     </section>
                 </div>
