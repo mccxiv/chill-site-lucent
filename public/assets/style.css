@@ -45,6 +45,11 @@ h3 {
     font-size: 3rem;
 }
 
+h4 {
+    font-size: 2rem;
+}
+
+
 a {
     transition: color 100ms ease-out;
     text-decoration: none;
@@ -154,4 +159,15 @@ a:hover {
     border-radius: 5px;
     box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(0,0,0,0.1);
+}
+
+/* Contact */
+.contact h4 {
+    margin: 15px 0;
+    font-family: Hack, sans-serif;
+    font-weight: normal;
+}
+
+.contact i.fa {
+    margin-right: 30px;
 }

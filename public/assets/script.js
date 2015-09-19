@@ -75,6 +75,8 @@ app.controller('project', function($scope, $routeParams, $resource) {
 	$scope.m.post = $resource('api/posts/'+$routeParams.project).get();
 });
 
+app.controller('contact', angular.noop);
+
 app.controller('hire', angular.noop);
 
 app.filter('markdownify', function(markdown) {
