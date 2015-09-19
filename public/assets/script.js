@@ -1,7 +1,7 @@
 var app = angular.module('lucent', ['ngAnimate', 'ngRoute', 'ngResource', 'ngSanitize', 'angular-inview']);
 
 app.config(function($routeProvider) {
-	var routes = ['/', '/about', '/projects', '/projects/:project', '/contact'];
+	var routes = ['/', '/about', '/projects', '/projects/:project', '/contact', '/hire'];
 
 	routes.map(addRoute);
 
@@ -74,6 +74,8 @@ app.controller('projects', function($scope, $resource, $document) {
 app.controller('project', function($scope, $routeParams, $resource) {
 	$scope.m.post = $resource('api/posts/'+$routeParams.project).get();
 });
+
+app.controller('hire', angular.noop);
 
 app.filter('markdownify', function(markdown) {
 	return function(input) {

@@ -14,13 +14,14 @@
 
     <body ng-controller="main" ng-cloak>
 
-        <ng-view ng-animate-children class="view-animation"></ng-view>
+        <ng-view ng-animate-children in-view-container class="view-animation"></ng-view>
 
         <nav class="menu" ng-if="m.notHome">
             <a href="#/">Andrea</a>
             <a href="#/projects">projects</a>
             <a href="https://github.com/mccxiv" target="_blank">github</a>
             <a href="#/contact">contact</a>
+            <a href="#/hire">hire</a>
         </nav>
 
         <script type="text/ng-template" id="partials/home.html">
@@ -30,6 +31,7 @@
                     <a href="#/projects">projects</a>
                     <a href="https://github.com/mccxiv" target="_blank">github</a>
                     <a href="#/contact">contact</a>
+                    <a href="#/hire">hire</a>
                 </div>
             </div>
         </script>
@@ -70,6 +72,21 @@
 
         <script type="text/ng-template" id="partials/contact.html">
             contact
+        </script>
+
+        <script type="text/ng-template" id="partials/hire.html">
+            <div class="hire mid-right">
+                <p>Indeed, I'm currently looking for a full time position in the US.</p>
+                <p>I've been coding for fun since 2007 and just obtained my degree.</p>
+                <p>
+                    My strength is JavaScript.<br>
+                    I'm comfortable with Node, Angular, Polymer and enjoy learning new technologies.<br>
+                    I've also done my fair share of PHP, used Java in school and played around with Rails.
+                </p>
+                <p>
+                    You may <a href="#/contact">contact me</a>.
+                </p>
+            </div>
         </script>
 
         <script src="bower_components/angular/angular.min.js"></script>
