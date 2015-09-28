@@ -91,8 +91,9 @@ a:hover {
     flex-direction: column;
     justify-content: center;
     min-height: 100vh;
-    margin-left: 50%;
-    width: 40%;
+    margin-left: 20px;
+    margin-right: 20%;
+    text-align: right;
 }
 
 .mid {
@@ -104,7 +105,8 @@ a:hover {
 .content {
     margin-left: auto;
     margin-right: auto;
-    width: 1200px;
+    max-width: 1200px;
+    padding: 0 20px;
 }
 
 /* Posts */
@@ -165,6 +167,20 @@ a:hover {
     border: 1px solid rgba(0,0,0,0.1);
 }
 
+@media (max-width: 600px) {
+    .post {
+        flex-direction: column;
+    }
+
+    .post aside {
+        position: initial;
+    }
+
+    .post section {
+        width: initial;
+    }
+}
+
 /* Contact */
 .contact h4 {
     margin: 15px 0;
@@ -173,5 +189,7 @@ a:hover {
 }
 
 .contact i.fa {
+    opacity: 0.6;
     margin-right: 30px;
+    font-size: 5rem;
 }

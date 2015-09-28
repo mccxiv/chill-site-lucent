@@ -84,7 +84,7 @@ ng-view.ng-leave .home .menu {
 }
 
 .post.visible .post-aside {
-    animation: zoomInLeft 500ms 700ms backwards;
+    animation: zoomInLeft 500ms 300ms backwards;
 }
 
 .post.visible .title {
