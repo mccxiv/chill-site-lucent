@@ -19,7 +19,7 @@ app.controller('main', function($scope, $resource) {
 
 	$scope.delete = function(id) {
 		if (!confirm('Deleting the post with ID '+id+'.\nAre you sure?')) return;
-		$resource('../api/posts/'+id, null, {delete: {method: 'DELETE'}}).delete(function() {
+		$resource('../chill/api/posts/'+id, null, {delete: {method: 'DELETE'}}).delete(function() {
 			fetchList();
 			$scope.m.post = {};
 		});
@@ -37,8 +37,8 @@ app.controller('main', function($scope, $resource) {
 
 	$scope.submit = function() {
 		var id = $scope.m.post.id;
-		if (!id || !idExists(id)) $resource('../api/posts/').save($scope.m.post, fetchList);
-		else $resource('../api/posts/', null, {put: {method: 'PUT'}}).put($scope.m.post, fetchList);
+		if (!id || !idExists(id)) $resource('../chill/api/posts/').save($scope.m.post, fetchList);
+		else $resource('../chill/api/posts/', null, {put: {method: 'PUT'}}).put($scope.m.post, fetchList);
 		$scope.m.post = {};
 	};
 
@@ -47,7 +47,7 @@ app.controller('main', function($scope, $resource) {
 	};
 
 	function fetchList() {
-		$scope.m.posts = $resource('../api/posts/', null, {get: {isArray: true}}).get();
+		$scope.m.posts = $resource('../chill/api/posts/', null, {get: {isArray: true}}).get();
 	}
 
 	function fetchStatus() {

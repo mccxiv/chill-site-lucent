@@ -43,7 +43,7 @@ app.controller('projects', function($scope, $resource, $document) {
 	$scope.m = {};
 
 	setTimeout(function() {
-		$scope.m.posts = $resource('api/posts/', null, {get: {isArray: true}}).get(function() {
+		$scope.m.posts = $resource('chill/api/posts/', null, {get: {isArray: true}}).get(function() {
 			setTimeout(pauseVideos, 0);
 		});
 	}, 500);
@@ -72,7 +72,7 @@ app.controller('projects', function($scope, $resource, $document) {
 });
 
 app.controller('project', function($scope, $routeParams, $resource) {
-	$scope.m.post = $resource('api/posts/'+$routeParams.project).get();
+	$scope.m.post = $resource('chill/api/posts/'+$routeParams.project).get();
 });
 
 app.controller('contact', angular.noop);
