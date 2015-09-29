@@ -60,6 +60,14 @@ a:hover {
     color: #0091ea;
 }
 
+p a, ul a {
+    color: #0091ea;
+}
+
+p a:hover, ul a:hover {
+    text-decoration: underline;
+}
+
 .menu {
     position: fixed;
 }
@@ -117,14 +125,6 @@ a:hover {
     margin-top: 300px;
     position: relative;
     opacity: 0;
-}
-
-.post .body a {
-    color: #0091ea;
-}
-
-.post .body a:hover {
-    text-decoration: underline;
 }
 
 .post.visible {
