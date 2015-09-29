@@ -119,6 +119,14 @@ a:hover {
     opacity: 0;
 }
 
+.post .body a {
+    color: #0091ea;
+}
+
+.post .body a:hover {
+    text-decoration: underline;
+}
+
 .post.visible {
     opacity: 1;
 }
