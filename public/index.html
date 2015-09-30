@@ -1,7 +1,7 @@
 <!doctype html>
-<html ng-app="lucent">
+<html ng-app="lucent" ng-controller="main">
     <head>
-        <title>Andrea Stella</title>
+        <title ng-bind-template="{{pageTitle? pageTitle + ' - ' : ''}} Andrea Stella"></title>
         <link rel="icon" type="image/png" href="assets/favicon.png">
 
         <link rel="stylesheet" media="screen" href="http://openfontlibrary.org/face/fantasque-sans-mono" rel="stylesheet" type="text/css"/>
@@ -15,7 +15,7 @@
 
     </head>
 
-    <body ng-controller="main" ng-cloak>
+    <body ng-cloak>
 
         <ng-view ng-animate-children in-view-container class="view-animation"></ng-view>
 

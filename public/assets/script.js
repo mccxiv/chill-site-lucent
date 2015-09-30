@@ -32,15 +32,17 @@ app.controller('main', function($scope, $rootScope, $timeout) {
 	});
 });
 
-app.controller('home', function($scope, $timeout) {
+app.controller('home', function($rootScope, $scope, $timeout) {
 	$scope.m = {};
+	$rootScope.pageTitle = '';
 	$timeout(function() {
 		$scope.m.render = true;
 	}, 0);
 });
 
-app.controller('projects', function($scope, $resource, $document) {
+app.controller('projects', function($rootScope, $scope, $resource, $document) {
 	$scope.m = {};
+	$rootScope.pageTitle = 'My Projects';
 
 	setTimeout(function() {
 		$scope.m.posts = $resource('chill/api/posts/', null, {get: {isArray: true}}).get(function() {
@@ -71,13 +73,19 @@ app.controller('projects', function($scope, $resource, $document) {
 	}
 });
 
-app.controller('project', function($scope, $routeParams, $resource) {
-	$scope.m.post = $resource('chill/api/posts/'+$routeParams.project).get();
+app.controller('project', function($rootScope, $scope, $routeParams, $resource) {
+	$scope.m.post = $resource('chill/api/posts/'+$routeParams.project).get(function() {
+		$rootScope.pageTitle = $scope.m.post.title;
+	});
 });
 
-app.controller('contact', angular.noop);
+app.controller('contact', function($rootScope) {
+	$rootScope.pageTitle = 'Contact Me'
+});
 
-app.controller('hire', angular.noop);
+app.controller('hire', function($rootScope) {
+	$rootScope.pageTitle = 'Hire Me';
+});
 
 app.filter('markdownify', function(markdown) {
 	return function(input) {
