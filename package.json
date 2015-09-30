@@ -1,0 +1,17 @@
+{
+  "name": "chill-site-lucent",
+  "scripts": {
+    "start": "chill-cms",
+    "postinstall": "bower install"
+  },
+  "author": {
+    "name": "Andrea Stella",
+    "email": "adr.stella@gmail.com",
+    "url": "http://mccxiv.me/"
+  },
+  "repository": "mccxiv/torrent-web-poc",
+  "dependencies": {
+    "bower": "^1.5.2",
+    "chill-cms": "github:mccxiv/chill-cms"
+  }
+}
