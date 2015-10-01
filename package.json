@@ -12,6 +12,6 @@
   "repository": "mccxiv/chil-site-lucent",
   "dependencies": {
     "bower": "^1.5.2",
-    "chill-cms": "https://github.com/mccxiv/chill-site-lucent.git"
+    "chill-cms": "https://github.com/mccxiv/chill-cms.git"
   }
 }
