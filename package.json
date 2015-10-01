@@ -10,9 +10,8 @@
     "email": "adr.stella@gmail.com",
     "url": "http://mccxiv.me/"
   },
-  "repository": "mccxiv/chil-site-lucent",
+  "repository": "mccxiv/chill-site-lucent",
   "dependencies": {
-    "bower": "^1.5.2",
-    "chill-cms": "mccxiv/chill-cms"
+    "bower": "^1.5.2"
   }
 }
