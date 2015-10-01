@@ -9,9 +9,9 @@
     "email": "adr.stella@gmail.com",
     "url": "http://mccxiv.me/"
   },
-  "repository": "mccxiv/torrent-web-poc",
+  "repository": "mccxiv/chil-site-lucent",
   "dependencies": {
     "bower": "^1.5.2",
-    "chill-cms": "mccxiv/chill-cms"
+    "chill-cms": "https://github.com/mccxiv/chill-site-lucent.git"
   }
 }
