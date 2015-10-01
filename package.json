@@ -1,5 +1,6 @@
 {
   "name": "chill-site-lucent",
+  "version": "0.0.1",
   "scripts": {
     "start": "chill-cms",
     "postinstall": "bower install"
@@ -12,6 +13,6 @@
   "repository": "mccxiv/chil-site-lucent",
   "dependencies": {
     "bower": "^1.5.2",
-    "chill-cms": "https://github.com/mccxiv/chill-cms.git"
+    "chill-cms": "git+ssh://git@github.com/mccxiv/chill-site.git#master"
   }
 }
