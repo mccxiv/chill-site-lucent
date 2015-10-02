@@ -51,7 +51,6 @@ app.controller('projects', function($rootScope, $scope, $resource, $document) {
 	}, 500);
 
 	$scope.visible = function(post) {
-		console.log('visible');
 		post.visible = true;
 		playVideo(post);
 	};
@@ -65,7 +64,6 @@ app.controller('projects', function($rootScope, $scope, $resource, $document) {
 
 	function playVideo(post) {
 		var element = $document[0].getElementById(post.id);
-		console.log(element);
 		var videos = element.querySelectorAll('video');
 		for (var i = 0; i < videos.length; i++) {
 			videos[i].play();

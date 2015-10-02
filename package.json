@@ -11,7 +11,5 @@
     "url": "http://mccxiv.me/"
   },
   "repository": "mccxiv/chill-site-lucent",
-  "dependencies": {
-    "bower": "^1.5.2"
-  }
+  "dependencies": {}
 }
