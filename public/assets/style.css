@@ -105,7 +105,6 @@ p a:hover, ul a:hover {
 }
 
 .mid {
-    /* TODO webkit prefix (maybe with gulp instead) */
     display: flex;
     flex-direction: column;
 }
