@@ -1,6 +1,7 @@
 /.idea
-bower_components
-/node-modules
+/src/bower_components
+/node_modules
+/dist
+/files
 chill-database.json
 site-database.json
-/files

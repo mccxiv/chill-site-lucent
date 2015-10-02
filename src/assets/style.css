@@ -7,12 +7,12 @@ html, body {
 
 @font-face {
     font-family: 'cnl-bold-italic';
-    src: url(fonts/Champagne%20&%20Limousines%20Bold%20Italic.woff) format('woff');
+    src: url(fonts/champagne-n-limousines-bold-talic.woff) format('woff');
 }
 
 @font-face {
     font-family: 'Ptah';
-    src: url(fonts/Ptah-Regular.woff) format('woff');
+    src: url(fonts/ptah-regular.woff) format('woff');
 }
 
 @font-face {
