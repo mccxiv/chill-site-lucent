@@ -7,7 +7,6 @@
     "angular-resource": "~1.4.5",
     "angular-route": "~1.4.5",
     "angular-sanitize": "~1.4.5",
-    "animate.css": "~3.4.0",
     "material-design-lite": "~1.0.4",
     "remarkable": "~1.6.0"
   }

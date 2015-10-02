@@ -1,3 +1,51 @@
+/* Individual animations taken from Animate.css */
+
+/*!
+Animate.css - http://daneden.me/animate
+Licensed under the MIT license - http://opensource.org/licenses/MIT
+Copyright (c) 2015 Daniel Eden
+*/
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 @-webkit-keyframes fadeInLeft {
     from {
         opacity: 0;
@@ -26,80 +74,90 @@
     }
 }
 
-/* LAYOUT ============================================ */
-ng-view.ng-leave {
-    animation: fadeOut 300ms;
-}
-ng-view.ng-enter {
-    animation: fadeIn 300ms;
-    animation-delay: 300ms;
+@-webkit-keyframes fadeOutLeft {
+    from {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
 }
 
-/* MENU ============================================== */
-.menu.ng-enter {
-    transition-duration: 1000ms;
+@keyframes fadeOutLeft {
+    from {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
 }
 
-.menu.ng-enter > * {
-    animation: fadeInLeft 250ms backwards ease-out;
+@-webkit-keyframes fadeInRight {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
 }
 
-.menu.ng-enter > *:nth-child(1) {
-    animation-delay: 800ms;
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
 }
 
-.menu.ng-enter > *:nth-child(2) {
-    animation-delay: 600ms;
+@-webkit-keyframes zoomInLeft {
+    from {
+        opacity: 0;
+        -webkit-transform: scale3d(.1, .1, .1) translate3d(-1000px, 0, 0);
+        transform: scale3d(.1, .1, .1) translate3d(-1000px, 0, 0);
+        -webkit-animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+        animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+    }
+
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(.475, .475, .475) translate3d(10px, 0, 0);
+        transform: scale3d(.475, .475, .475) translate3d(10px, 0, 0);
+        -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+        animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+    }
 }
 
-.menu.ng-enter > *:nth-child(3) {
-    animation-delay: 500ms;
-}
+@keyframes zoomInLeft {
+    from {
+        opacity: 0;
+        -webkit-transform: scale3d(.1, .1, .1) translate3d(-1000px, 0, 0);
+        transform: scale3d(.1, .1, .1) translate3d(-1000px, 0, 0);
+        -webkit-animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+        animation-timing-function: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+    }
 
-.menu.ng-enter > *:nth-child(4) {
-    animation-delay: 200ms;
-}
-
-.name.ng-enter {
-    animation: fadeInLeft 250ms backwards ease-out;
-}
-
-.menu.ng-leave,
-.name.ng-leave {
-    animation: fadeOutLeft 300ms ease-out;
-}
-
-/* HOME  ============================================= */
-ng-view.ng-leave .home .name {
-    animation: fadeOutRight 250ms ease-out forwards;
-}
-
-ng-view.ng-leave .home .menu {
-    animation: fadeOutLeft 300ms ease-out forwards;
-}
-
-/* PROJECTS ========================================== */
-.post {
-    transition: outline 2s;
-}
-
-.post.visible .post-aside {
-    animation: zoomInLeft 500ms 100ms backwards;
-}
-
-.post.visible .title {
-    animation: fadeInRight 200ms 100ms backwards;
-}
-
-.post.visible .summary {
-    animation: fadeInRight 200ms 300ms backwards;
-}
-
-.post.visible .body {
-    animation: fadeIn 650ms 200ms backwards;
-}
-
-.post.visible video,
-.post.visible img {
-    animation: fadeIn 350ms 400ms backwards;
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(.475, .475, .475) translate3d(10px, 0, 0);
+        transform: scale3d(.475, .475, .475) translate3d(10px, 0, 0);
+        -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+        animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
+    }
 }
