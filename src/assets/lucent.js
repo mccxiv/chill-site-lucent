@@ -37,7 +37,7 @@ app.controller('main', function ($scope, $rootScope, $timeout) {
 
 app.controller('home', function ($rootScope, $scope, $timeout) {
 	$scope.m = {};
-	$rootScope.pageTitle = '';
+	$rootScope.pageTitle = 'andrea\'s page';
 	$timeout(function () {
 		$scope.m.render = true;
 	}, 0);
@@ -45,7 +45,7 @@ app.controller('home', function ($rootScope, $scope, $timeout) {
 
 app.controller('projects', function ($rootScope, $scope, $resource, $document) {
 	$scope.m = {};
-	$rootScope.pageTitle = 'My Projects';
+	$rootScope.pageTitle = 'andrea\'s projects';
 
 	setTimeout(function () {
 		$scope.m.posts = $resource('chill/api/posts/', null, {get: {isArray: true}}).get(function () {
@@ -81,11 +81,11 @@ app.controller('project', function ($rootScope, $scope, $routeParams, $resource)
 });
 
 app.controller('contact', function ($rootScope) {
-	$rootScope.pageTitle = 'Contact Me'
+	$rootScope.pageTitle = 'get in contact with andrea'
 });
 
 app.controller('hire', function ($rootScope) {
-	$rootScope.pageTitle = 'Hire Me';
+	$rootScope.pageTitle = 'hire andrea';
 });
 
 app.filter('markdownify', function (markdown) {
