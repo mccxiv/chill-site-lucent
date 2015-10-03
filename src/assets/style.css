@@ -99,6 +99,7 @@ p a:hover, ul a:hover {
     flex-direction: column;
     justify-content: center;
     min-height: 100vh;
+    height: 100vh; /* min-height + flex don't work in IE */
     margin-left: 20px;
     margin-right: 20%;
     text-align: right;
