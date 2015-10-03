@@ -1,6 +1,8 @@
+
+
 var app = angular.module('lucent', ['ngAnimate', 'ngRoute', 'ngResource', 'ngSanitize', 'angular-inview']);
 
-app.config(function($routeProvider) {
+app.config(function ($routeProvider) {
 	var routes = ['/', '/about', '/projects', '/projects/:project', '/contact', '/hire'];
 
 	routes.map(addRoute);
@@ -10,47 +12,50 @@ app.config(function($routeProvider) {
 		if (name.indexOf(':') > -1) name = name.split(':')[1];
 
 		$routeProvider.when(route, {
-			templateUrl: 'partials/'+name+'.html',
+			templateUrl: 'partials/' + name + '.html',
 			controller: name
 		});
 	}
 });
 
-app.factory('markdown', function() {
+app.factory('markdown', function () {
 	return new Remarkable({
 		html: true
 	});
 });
 
-app.controller('main', function($scope, $rootScope, $timeout) {
-	$scope.m = {notHome: false};
-	$rootScope.$on('$routeChangeSuccess', function(e, curr) {
+app.controller('main', function ($scope, $rootScope, $timeout) {
+	$scope.m = {
+		notHome: false
+	};
+
+	$rootScope.$on('$routeChangeSuccess', function (e, curr) {
 		// Make sure animation is triggered when landing on any page
-		$timeout(function() {
+		$timeout(function () {
 			$scope.m.notHome = curr.templateUrl !== 'partials/home.html';
 		}, 0);
 	});
 });
 
-app.controller('home', function($rootScope, $scope, $timeout) {
+app.controller('home', function ($rootScope, $scope, $timeout) {
 	$scope.m = {};
 	$rootScope.pageTitle = '';
-	$timeout(function() {
+	$timeout(function () {
 		$scope.m.render = true;
 	}, 0);
 });
 
-app.controller('projects', function($rootScope, $scope, $resource, $document) {
+app.controller('projects', function ($rootScope, $scope, $resource, $document) {
 	$scope.m = {};
 	$rootScope.pageTitle = 'My Projects';
 
-	setTimeout(function() {
-		$scope.m.posts = $resource('chill/api/posts/', null, {get: {isArray: true}}).get(function() {
+	setTimeout(function () {
+		$scope.m.posts = $resource('chill/api/posts/', null, {get: {isArray: true}}).get(function () {
 			setTimeout(pauseVideos, 0);
 		});
 	}, 500);
 
-	$scope.visible = function(post) {
+	$scope.visible = function (post) {
 		post.visible = true;
 		playVideo(post);
 	};
@@ -71,28 +76,28 @@ app.controller('projects', function($rootScope, $scope, $resource, $document) {
 	}
 });
 
-app.controller('project', function($rootScope, $scope, $routeParams, $resource) {
-	$scope.m.post = $resource('chill/api/posts/'+$routeParams.project).get(function() {
+app.controller('project', function ($rootScope, $scope, $routeParams, $resource) {
+	$scope.m.post = $resource('chill/api/posts/' + $routeParams.project).get(function () {
 		$rootScope.pageTitle = $scope.m.post.title;
 	});
 });
 
-app.controller('contact', function($rootScope) {
+app.controller('contact', function ($rootScope) {
 	$rootScope.pageTitle = 'Contact Me'
 });
 
-app.controller('hire', function($rootScope) {
+app.controller('hire', function ($rootScope) {
 	$rootScope.pageTitle = 'Hire Me';
 });
 
-app.filter('markdownify', function(markdown) {
-	return function(input) {
+app.filter('markdownify', function (markdown) {
+	return function (input) {
 		return markdown.render(input || '');
 	};
 });
 
-app.filter('trustAsHtml', function($sce) {
-	return function(html) {
+app.filter('trustAsHtml', function ($sce) {
+	return function (html) {
 		return $sce.trustAsHtml(html);
 	};
 });

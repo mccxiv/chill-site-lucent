@@ -1,16 +1,50 @@
 <!doctype html>
-<html ng-app="lucent" ng-controller="main">
+<html ng-controller="main">
     <head>
         <meta charset='utf-8'>
         <title ng-bind-template="{{pageTitle? pageTitle + ' - ' : ''}} Andrea Stella"></title>
         <link rel="icon" type="image/png" href="favicon.png">
 
-        <!-- build:css site.min.css -->
-        <link rel="stylesheet" href="http://openfontlibrary.org/face/fantasque-sans-mono" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="assets/animations.css">
-        <link rel="stylesheet" href="assets/angular-animations.css">
-        <link rel="stylesheet" href="assets/style.css">
-        <!-- endbuild -->
+        <style>
+            [ng-cloak] {display: none;}
+            body {background-color: #F7F7F7;}
+            //body {background-color: #3d5d2e;}
+        </style>
+
+        <script type="text/html" id="deferred-css">
+            <!-- build:css site.min.css -->
+            <link rel="stylesheet" property="stylesheet" href="assets/animations.css">
+            <link rel="stylesheet" property="stylesheet" href="assets/angular-animations.css">
+            <link rel="stylesheet" property="stylesheet" href="assets/style.css">
+            <!-- endbuild -->
+        </script>
+
+        <script>
+            setTimeout(function() {
+                injectStylesheets(function() {
+                    if (document.readyState === 'complete') bootStrapApp();
+                    else window.addEventListener('load', bootStrapApp);
+                });
+            }, 1);
+
+            function injectStylesheets(cb) {
+                var stylesheets = document.createElement('div');
+                stylesheets.innerHTML = document.getElementById('deferred-css').innerHTML;
+                document.head.appendChild(stylesheets);
+                var sheets = stylesheets.querySelectorAll('link[rel="stylesheet"]');
+                var loaded = 0;
+                for (var i = 0; i < sheets.length; i++) {
+                    sheets[i].addEventListener('load', function() {
+                        loaded++;
+                        if (loaded === sheets.length) cb();
+                    });
+                }
+            }
+
+            function bootStrapApp() {
+                angular.bootstrap(document.querySelector('html'), ['lucent']);
+            }
+        </script>
     </head>
 
     <body ng-cloak>
@@ -101,7 +135,7 @@
         <script src="bower_components/angular-route/angular-route.min.js"></script>
         <script src="bower_components/angular-resource/angular-resource.min.js"></script>
         <script src="bower_components/remarkable/dist/remarkable.min.js"></script>
-        <script src="assets/script.js"></script>
+        <script src="assets/lucent.js"></script>
         <!-- endbuild -->
     </body>
 </html>
