@@ -27,10 +27,12 @@ app.controller('main', function ($scope, $rootScope, $timeout) {
 		notHome: false
 	};
 
-	$rootScope.$on('$routeChangeSuccess', function (e, curr) {
+	$rootScope.$on('$routeChangeSuccess', function (e, curr, prev) {
 		// Make sure animation is triggered when landing on any page
 		$timeout(function () {
-			$scope.m.notHome = curr.templateUrl !== 'partials/home.html';
+			if (curr.templateUrl) {
+				$scope.m.notHome = curr.templateUrl !== 'partials/home.html';
+			}
 		}, 0);
 	});
 });
