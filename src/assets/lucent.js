@@ -1,6 +1,6 @@
 var app = angular.module('lucent', ['ngAnimate', 'ngRoute', 'ngResource', 'ngSanitize', 'angular-inview']);
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, $locationProvider) {
 	var routes = ['/', '/about', '/projects', '/projects/:project', '/contact', '/hire'];
 
 	routes.map(addRoute);
@@ -13,7 +13,14 @@ app.config(function ($routeProvider) {
 			templateUrl: 'partials/' + name + '.html',
 			controller: name
 		});
+
+		$routeProvider.otherwise({
+			templateUrl: 'partials/404.html',
+			controller: 'notFound'
+		});
 	}
+
+	$locationProvider.html5Mode(true);
 });
 
 app.factory('markdown', function () {
@@ -88,6 +95,10 @@ app.controller('contact', function ($rootScope) {
 
 app.controller('hire', function ($rootScope) {
 	$rootScope.pageTitle = 'hire andrea';
+});
+
+app.controller('notFound', function ($rootScope) {
+	$rootScope.pageTitle = 'hmm...';
 });
 
 app.filter('markdownify', function (markdown) {

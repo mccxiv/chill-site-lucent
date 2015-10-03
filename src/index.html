@@ -4,6 +4,7 @@
         <meta charset='utf-8'>
         <title ng-bind="pageTitle">...</title>
         <link rel="icon" type="image/png" href="favicon.png">
+        <base href="/">
 
         <style>
             [ng-cloak] {display: none;}
@@ -51,21 +52,21 @@
         <ng-view ng-animate-children in-view-container class="view-animation"></ng-view>
 
         <nav class="menu" ng-if="m.notHome">
-            <a href="#/">Andrea</a>
-            <a href="#/projects">projects</a>
+            <a href="/">Andrea</a>
+            <a href="/projects">projects</a>
             <a href="https://github.com/mccxiv" target="_blank">github</a>
-            <a href="#/contact">contact</a>
-            <a href="#/hire">hire</a>
+            <a href="/contact">contact</a>
+            <a href="/hire">hire</a>
         </nav>
 
         <script type="text/ng-template" id="partials/home.html">
             <div class="home mid-right">
                 <div class="menu" ng-if="m.render">
                     <span class="name">Andrea Stella</span>
-                    <a href="#/projects">projects</a>
+                    <a href="/projects">projects</a>
                     <a href="https://github.com/mccxiv" target="_blank">github</a>
-                    <a href="#/contact">contact</a>
-                    <a href="#/hire">hire</a>
+                    <a href="/contact">contact</a>
+                    <a href="/hire">hire</a>
                 </div>
             </div>
         </script>
@@ -81,7 +82,7 @@
                     </aside>
                     <section class="post-content">
                         <h2 class="title">
-                            <a href="#/projects/{{post.id}}">{{post.title}}</a>
+                            <a href="/projects/{{post.id}}">{{post.title}}</a>
                         </h2>
                         <p class="summary">{{post.summary}}</p>
                         <div class="body" ng-bind-html="post.body | markdownify | trustAsHtml"></div>
@@ -121,8 +122,15 @@
                     I've also done my fair share of PHP, used Java in school and played around with Rails.
                 </p>
                 <p>
-                    You may <a href="#/contact">contact me here</a>.
+                    You may <a href="/contact">contact me here</a>.
                 </p>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="partials/404.html">
+            <div class="mid-right">
+                <p>Hmm... That link seems broken, sorry.</p>
+                <p>Perhaps go back to the <a href="/">home page</a>?</p>
             </div>
         </script>
 
