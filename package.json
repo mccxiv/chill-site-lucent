@@ -11,8 +11,7 @@
     "url": "http://mccxiv.me/"
   },
   "repository": "mccxiv/chill-site-lucent",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
