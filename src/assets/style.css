@@ -122,7 +122,8 @@ p a:hover, ul a:hover {
     display: flex;
     justify-content: flex-end;
     flex-direction: row;
-    margin-top: 300px;
+    margin-top: 100px;
+    margin-bottom: 200px;
     position: relative;
     opacity: 0;
 }
@@ -187,6 +188,11 @@ p a:hover, ul a:hover {
     .post section {
         width: initial;
     }
+}
+
+/* Project */
+.project .post {
+    margin-top: 60px;
 }
 
 /* Contact */
