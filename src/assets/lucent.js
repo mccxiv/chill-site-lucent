@@ -1,5 +1,3 @@
-
-
 var app = angular.module('lucent', ['ngAnimate', 'ngRoute', 'ngResource', 'ngSanitize', 'angular-inview']);
 
 app.config(function ($routeProvider) {
