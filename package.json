@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "chill-cms",
-    "postinstall": "npm install && bower install && gulp default"
+    "postinstall": "bower install && gulp default"
   },
   "author": {
     "name": "Andrea Stella",
