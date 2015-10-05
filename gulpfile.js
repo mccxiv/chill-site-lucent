@@ -13,7 +13,7 @@ var runSequence =     require('run-sequence');
 gulp.task('default', ['make-dist']);
 
 gulp.task('make-dist', function(cb) {
-	runSequence('clean', 'copy-favicon', 'concat-minify-replace', cb);
+	runSequence('clean', 'copy-favicon', 'bundle-index', 'bundle-dash', cb);
 });
 
 gulp.task('clean', function() {
@@ -25,7 +25,7 @@ gulp.task('copy-favicon', function() {
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('concat-minify-replace', function() {
+gulp.task('bundle-index', function() {
 	var assets = useref.assets({noconcat: true});
 	return gulp.src('src/index.html')
 		.pipe(assets)
@@ -38,4 +38,19 @@ gulp.task('concat-minify-replace', function() {
 		.pipe(assets.restore())
 		.pipe(useref())
 		.pipe(gulp.dest('dist'));
+});
+
+gulp.task('bundle-dash', function() {
+	var assets = useref.assets({noconcat: true});
+	return gulp.src('src/dash/index.html')
+		.pipe(assets)
+		.pipe(gulpif('*.js', concat('dash.min.js')))
+		.pipe(gulpif('*.js', ngAnnotate()))
+		.pipe(gulpif('*.js', uglify({output: {max_line_len: 200}})))
+		.pipe(gulpif('*.css', base64({maxWeightResource: Infinity})))
+		.pipe(gulpif('*.css', concat('dash.min.css')))
+		.pipe(gulpif('*.css', minifyCss()))
+		.pipe(assets.restore())
+		.pipe(useref())
+		.pipe(gulp.dest('dist/dash'));
 });

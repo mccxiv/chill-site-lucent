@@ -2,9 +2,12 @@
 <html ng-app="lucent-dash">
     <head>
         <title>Dashboard</title>
+
+        <!-- build:css dash.min.css -->
         <link rel="stylesheet" href="../bower_components/material-design-lite/material.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="dash.css">
+        <!-- endbuild -->
     </head>
 
     <body ng-controller="main" ng-cloak>
@@ -83,11 +86,13 @@
             <div ng-switch-default>Loading...</div>
         </div>
 
+        <!-- build:js dash.min.js -->
         <script src="../bower_components/angular/angular.min.js"></script>
         <script src="../bower_components/angular-resource/angular-resource.min.js"></script>
         <script src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
         <script src="../bower_components/remarkable/dist/remarkable.min.js"></script>
         <script src="../bower_components/material-design-lite/material.min.js"></script>
         <script src="dash.js"></script>
+        <!-- endbuild -->
     </body>
 </html>
