@@ -13,7 +13,7 @@ var runSequence =     require('run-sequence');
 gulp.task('default', ['make-dist']);
 
 gulp.task('make-dist', function(cb) {
-	runSequence('clean', 'copy-favicon', 'bundle-index', 'bundle-dash', cb);
+	runSequence('clean', 'copy-favicon', 'bundle-index', 'chill', 'bundle-dash', cb);
 });
 
 gulp.task('clean', function() {
@@ -38,6 +38,10 @@ gulp.task('bundle-index', function() {
 		.pipe(assets.restore())
 		.pipe(useref())
 		.pipe(gulp.dest('dist'));
+});
+
+gulp.task('chill', function(cb) {
+	setTimeout(cb, 10000);
 });
 
 gulp.task('bundle-dash', function() {
