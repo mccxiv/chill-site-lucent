@@ -1,7 +1,7 @@
 var app = angular.module('lucent', ['ngAnimate', 'ngRoute', 'ngResource', 'ngSanitize', 'angular-inview']);
 
 app.config(function ($routeProvider, $locationProvider) {
-	var routes = ['/', '/about', '/projects', '/projects/:project', '/contact', '/hire'];
+	var routes = ['/', '/about', '/projects', '/projects/:project', '/contact'];
 
 	routes.map(addRoute);
 
@@ -91,10 +91,6 @@ app.controller('project', function ($rootScope, $scope, $routeParams, $resource)
 
 app.controller('contact', function ($rootScope) {
 	$rootScope.pageTitle = 'get in contact with andrea'
-});
-
-app.controller('hire', function ($rootScope) {
-	$rootScope.pageTitle = 'hire andrea';
 });
 
 app.controller('notFound', function ($rootScope) {
